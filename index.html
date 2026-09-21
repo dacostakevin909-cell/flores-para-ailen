@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Ailén 🌻</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: auto;
+            background: #ffd83d;
+            font-family: Georgia, serif;
+            color: #5c3b00;
+        }
+
+        /* =========================
+           PANTALLA INICIAL
+        ========================= */
+
+        .inicio {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            max-width: 750px;
+            padding: 20px;
+            font-size: 42px;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+
+        .corazon {
+            font-size: 35px;
+            margin: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .boton {
+            margin-top: 25px;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            background: #6b4300;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .boton:hover {
+            transform: scale(1.08);
+            background: #4d3000;
+        }
+
+        /* Flores que caen */
+
+        .flor {
+            position: absolute;
+            top: -60px;
+            font-size: 35px;
+            animation: caer linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes caer {
+
+            from {
+                transform: translateY(-80px) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+
+        }
+
+        /* =========================
+           PANTALLA DE LAS 4 FLORES
+        ========================= */
+
+        .pantalla-flores {
+            display: none;
+            min-height: 100vh;
+            background: #ffd83d;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .pantalla-flores h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .pantalla-flores p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+
+        .flores-container {
+            display: flex;
+            gap: 45px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flor-boton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 90px;
+    transition: transform 0.4s ease;
+}
+
+.flor-boton:hover {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.flor-boton:active {
+    animation: florElegida 0.6s ease;
+}
+
+@keyframes florElegida {
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform: scale(1.3) rotate(8deg);
+    }
+
+    60% {
+        transform: scale(0.9) rotate(-8deg);
+    }
+
+    100% {
+        transform: scale(1.15) rotate(0deg);
+    }
+}
+
+        .flor-boton:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .flor-boton span {
+            display: block;
+            font-size: 16px;
+            color: #5c3b00;
+            margin-top: -10px;
+        }
+
+        /* =========================
+           PANTALLA DEL RECUERDO
+        ========================= */
+
+        .recuerdo {
+            display: none;
+            min-height: 100vh;
+            background: #ffd83d;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 80px 40px 60px;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .recuerdo-contenido {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* Foto */
+
+        .foto-marco {
+            background: white;
+            padding: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            transform: rotate(-3deg);
+        }
+
+        .foto-marco img {
+            width: 400px;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Carta */
+
+        .carta {
+            background: #fff4d0;
+            padding: 35px;
+            max-width: 420px;
+            min-height: 350px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transform: rotate(2deg);
+        }
+
+        .carta h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        .carta p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .firma {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        /* Botón volver */
+
+        .volver {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            background: #6b4300;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .volver:hover {
+            transform: scale(1.05);
+        }
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .recuerdo-contenido {
+                flex-direction: column;
+                gap: 30px;
+                padding-top: 50px;
+            }
+
+            .foto-marco img {
+                width: 280px;
+                height: 350px;
+            }
+
+            .carta {
+                max-width: 90%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         INICIO
+    ========================= -->
+
+    <main class="inicio">
+
+        <div class="corazon">💛</div>
+
+        <h1>
+            Pueden haber muchas flores,
+            pero ninguna como vos,
+            flor de hermosa.
+        </h1>
+
+        <div class="corazon">🌻</div>
+
+        <button class="boton" onclick="mostrarFlores()">
+            Tus flores 🌻
+        </button>
+
+
+        <!-- Flores cayendo -->
+
+        <span class="flor" style="left: 5%; animation-duration: 7s;">
+            🌼
+        </span>
+
+        <span class="flor" style="left: 15%; animation-duration: 9s; animation-delay: 2s;">
+            🌻
+        </span>
+
+        <span class="flor" style="left: 28%; animation-duration: 6s; animation-delay: 1s;">
+            🌼
+        </span>
+
+        <span class="flor" style="left: 40%; animation-duration: 8s; animation-delay: 3s;">
+            🌻
+        </span>
+
+        <span class="flor" style="left: 55%; animation-duration: 7s; animation-delay: 1s;">
+            🌼
+        </span>
+
+        <span class="flor" style="left: 68%; animation-duration: 10s; animation-delay: 2s;">
+            🌻
+        </span>
+
+        <span class="flor" style="left: 80%; animation-duration: 6s; animation-delay: 4s;">
+            🌼
+        </span>
+
+        <span class="flor" style="left: 92%; animation-duration: 8s; animation-delay: 1s;">
+            🌻
+        </span>
+
+    </main>
+
+
+    <!-- =========================
+         LAS 4 FLORES
+    ========================= -->
+
+    <section id="pantallaFlores" class="pantalla-flores">
+
+        <h2>
+            Estas flores son para vos 💛
+        </h2>
+
+        <p>
+            Elegí una 🌻
+        </p>
+
+
+        <div class="flores-container">
+
+            <button class="flor-boton" onclick="abrirFlor(1)">
+    🌻
+</button>
+
+<button class="flor-boton" onclick="abrirFlor(2)">
+    🌻
+</button>
+
+<button class="flor-boton" onclick="abrirFlor(3)">
+    🌻
+</button>
+
+<button class="flor-boton" onclick="abrirFlor(4)">
+    🌻
+</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         RECUERDO
+    ========================= -->
+
+    <section id="recuerdo" class="recuerdo">
+
+        <button class="volver" onclick="volverFlores()">
+            ← Volver
+        </button>
+
+
+        <div class="recuerdo-contenido">
+
+
+            <div class="foto-marco">
+
+                <img
+                    id="fotoRecuerdo"
+                    src=""
+                    alt="Nuestro recuerdo"
+                >
+
+            </div>
+
+
+            <div class="carta">
+
+                <h2 id="tituloRecuerdo">
+                    Nuestro recuerdo 🌻
+                </h2>
+<div class="carta">
+
+    <h2 id="tituloRecuerdo">
+        Para vos 💛
+    </h2>
+
+    <div id="textoCarta"></div>
+
+</div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        function mostrarFlores() {
+
+            document.querySelector(".inicio").style.display = "none";
+
+            document.getElementById("pantallaFlores").style.display = "flex";
+
+        }
+
+
+function abrirFlor(numero) {
+
+    const boton = event.currentTarget;
+
+    boton.classList.add("flor-elegida");
+
+    const fotos = [
+        "foto1.jpg",
+        "foto2.jpg",
+        "foto3.jpg",
+        "foto4.jpg"
+    ];
+
+    const cartas = [
+        `
+        <p>Mi amor, nunca me cansaría de ver esos hermosos ojos que me encantan. Me transmiten seguridad y paz. Cuando me mirás, me pongo demasiado nervioso (aunque lo disimule), pero a la vez me gusta, porque haría cualquier estupidez con tal de que esos ojos me miren un ratito más.</p>
+
+        <p>Por eso a veces te jodo y me pongo enfrente tuyo, porque quiero tu atención y quiero volver a ver esos hermosos ojos. 💛</p>
+
+        <p class="firma">Te amo ❤️</p>
+        `,
+
+        `
+        <p>Cada caminata, salida y paseo con vos es un escape de mis problemas, preocupaciones y pensamientos que me saturan. Pero con ese escape me solucionás todo, porque me divierto. Por ahí te cuento lo que me pasa o simplemente caminamos, y eso es lo que necesito: salir a despejarme.</p>
+
+        <p>Pero que estés vos lo mejora todavía más, porque está la persona más importante al lado mío y me encanta eso. Quiero salir siempre para estar tan solo un ratito con vos. Y por ahí no hablamos, pero a veces eso es necesario, y vos sabés cuándo es necesario. Y me encanta eso. 💛</p>
+
+        <p class="firma">Te amo ❤️</p>
+        `,
+
+        `
+        <p>Estar acostado, durmiendo o simplemente sabiendo que estás conmigo me da una paz indescriptible. Es como cargarme de vuelta (aunque a veces me saques toda la frazada o no me dejes espacio en la cama 😂), y me hace demasiado bien, aunque no lo creas.</p>
+
+        <p>Porque simplemente somos vos y yo, nada más. Cuando te pido que me abraces es porque te quiero sentir más cerca y sentirme protegido. No sé por qué, pero a veces me agarran días en los que me siento muy mal y solo, por más que estés acostada al lado mío. Y ese abrazo me da la paz y seguridad que necesito en ese momento.</p>
+
+        <p>Gracias por estar ahí. 💛</p>
+
+        <p class="firma">Te amo ❤️</p>
+        `,
+
+        `
+        <p>Bueno, mi amor, y para terminar, está esta hermosa foto que me hace recordar lo mucho que me hacés feliz cuando estoy con vos.</p>
+
+        <p>Porque, por más que no tengamos todos los gustos en común, siempre que estamos juntos hay mucha felicidad de parte de los dos, y al final eso es lo importante: nuestra felicidad.</p>
+
+        <p>No nos tiene que importar qué nos falte o quién no quiera que estemos juntos. Importa qué tan felices somos juntos. Y mientras esté con vos, voy a ser el hombre más feliz del mundo, y me voy a encargar de que vos te sientas igual.</p>
+
+        <p>Te amo tanto, mi amor, que es imposible describirlo con palabras.</p>
+
+        <p class="firma">
+            Te amo infinitamente, ma. ❤️‍🩹
+        </p>
+        `
+    ];
+
+    setTimeout(function() {
+
+        document.getElementById("pantallaFlores").style.display = "none";
+        document.getElementById("recuerdo").style.display = "flex";
+
+        document.getElementById("fotoRecuerdo").src =
+            "fotos/" + fotos[numero - 1];
+
+        document.getElementById("textoCarta").innerHTML =
+            cartas[numero - 1];
+
+        boton.classList.remove("flor-elegida");
+
+    }, 550);
+}
+
+
+        function volverFlores() {
+
+            document.getElementById("recuerdo").style.display = "none";
+
+            document.getElementById("pantallaFlores").style.display = "flex";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
